@@ -69,7 +69,7 @@ class SensorReadingController extends Controller
     // Show 20 latest sensor readings on dashboard
     public function index()
     {
-        return response->json(SensorReading::latest('id')->limit(20)->get());
+        return response()->json(SensorReading::latest('id')->limit(20)->get());
     }
 
     // Show only 1 latest sensor reading on dashboard
