@@ -82,6 +82,6 @@ class SensorReadingController extends Controller
             return response()->json(['message' => 'No sensor readings found'], 404);
         }
 
-        return response()->json($reaeding);
+        return response()->json($reading);
     }
 }
