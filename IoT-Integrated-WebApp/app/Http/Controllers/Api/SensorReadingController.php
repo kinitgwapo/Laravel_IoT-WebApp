@@ -19,7 +19,7 @@ class SensorReadingController extends Controller
         // Empty Token
         if($expectedToken === '')
         {
-            return response()->json(['message' => 'Invalid token configuration'], 498);
+            return response()->json(['message' => 'Invalid token configuration'], 500);
         }
 
         // Token comparison not equal
