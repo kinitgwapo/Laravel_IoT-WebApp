@@ -1,60 +1,968 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=VT323&display=swap');
+
+/* =========================================
+   1. GLOBAL / UPSIDE DOWN ATMOSPHERE
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background: #f1f5f9;
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            #4a0005 0%,
+            #1a0003 50%,
+            #030002 90%
+        );
+
+    color: #ff3333;
+    font-family: 'VT323', monospace;
+
     margin: 0;
-    padding: 25px;
-    color: #1e293b;
+    padding: 30px;
+
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+
+    box-shadow: inset 0 0 100px rgba(255, 0, 0, 0.4);
+
+    animation: lightning-storm 7s infinite ease-in-out;
 }
 
-.container {
-    max-width: 1100px;
-    margin: auto;
+@keyframes lightning-storm {
+    0%, 90%, 100% {
+        background:
+            radial-gradient(
+                circle at 50% 20%,
+                #4a0005 0%,
+                #1a0003 50%,
+                #030002 90%
+            );
+    }
+
+    91% {
+        background:
+            radial-gradient(
+                circle at 50% 20%,
+                #88000a 0%,
+                #2b0005 50%,
+                #080003 90%
+            );
+    }
+
+    92% {
+        background:
+            radial-gradient(
+                circle at 50% 20%,
+                #4a0005 0%,
+                #1a0003 50%,
+                #030002 90%
+            );
+    }
+
+    93% {
+        background:
+            radial-gradient(
+                circle at 50% 25%,
+                #cc0011 0%,
+                #4a0005 40%,
+                #0d0003 85%
+            );
+    }
+
+    95% {
+        background:
+            radial-gradient(
+                circle at 50% 20%,
+                #4a0005 0%,
+                #1a0003 50%,
+                #030002 90%
+            );
+    }
 }
 
-.header, .card, .panel {
-    background: white;
-    padding: 22px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px #00000010;
+
+/* =========================================
+   2. MIND FLAYER BACKGROUND
+========================================= */
+
+.mind-flayer {
+    position: fixed;
+
+    top: 2%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 100%;
+    max-width: 1200px;
+    height: 550px;
+
+    pointer-events: none;
+    z-index: 0;
+
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 600'><g fill='%23050002' stroke='%23880000' stroke-width='1.5'><path d='M500,110 Q520,70 500,40 Q480,70 500,110 Z'/><path d='M500,90 C440,30 320,10 150,50 C280,100 400,100 470,110 Z'/><path d='M500,90 C560,30 680,10 850,50 C720,100 600,100 530,110 Z'/><path d='M480,110 C360,70 220,110 50,220 C210,190 360,160 470,130 Z'/><path d='M520,110 C640,70 780,110 950,220 C790,190 640,160 530,130 Z'/><path d='M475,130 C330,170 150,270 20,440 C160,340 330,250 465,170 Z'/><path d='M525,130 C670,170 850,270 980,440 C840,340 670,250 535,170 Z'/><path d='M470,160 C360,250 220,410 80,580 C230,450 360,320 465,200 Z'/><path d='M530,160 C640,250 780,410 920,580 C770,450 640,320 535,200 Z'/></g></svg>")
+        center / contain no-repeat;
+
+    opacity: 0.75;
+
+    animation:
+        flayer-loom 6s ease-in-out infinite alternate,
+        flayer-aura 4s ease-in-out infinite alternate;
 }
 
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+@keyframes flayer-loom {
+    0% {
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(-25px) scale(1.04);
+    }
+}
+
+@keyframes flayer-aura {
+    0% {
+        filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.2));
+    }
+
+    100% {
+        filter: drop-shadow(0 0 35px rgba(255, 0, 0, 0.7));
+    }
+}
+
+
+/* =========================================
+   3. FLOATING SPORES
+========================================= */
+
+.spores {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+    z-index: 0;
+
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, #ff4444, transparent),
+        radial-gradient(3px 3px at 150px 150px, rgba(255,100,100,0.8), transparent),
+        radial-gradient(2px 2px at 300px 80px, #ff2222, transparent),
+        radial-gradient(3px 3px at 450px 300px, rgba(255,0,0,0.6), transparent),
+        radial-gradient(2px 2px at 600px 200px, #ff6666, transparent),
+        radial-gradient(3px 3px at 750px 380px, #ff0000, transparent),
+        radial-gradient(2px 2px at 900px 100px, rgba(255,80,80,0.7), transparent);
+
+    background-repeat: repeat;
+    background-size: 1000px 600px;
+
+    animation: drift-spores 12s linear infinite;
+}
+
+@keyframes drift-spores {
+    0% {
+        background-position:
+            0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+    }
+
+    100% {
+        background-position:
+            -100px -600px,
+            100px -600px,
+            -50px -600px,
+            150px -600px,
+            -200px -600px,
+            80px -600px,
+            -120px -600px;
+    }
+}
+
+
+/* =========================================
+   4. DASHBOARD LAYOUT
+========================================= */
+
+.dashboard {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    min-height: calc(100vh - 60px);
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   5. HEADER
+========================================= */
+
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 20px 25px;
+    margin-bottom: 28px;
+
+    background: rgba(5, 0, 2, 0.88);
+
+    border: 1px solid #800000;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.25);
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.brand-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 48px;
+
+    background: #800000;
+    border: 1px solid #ff0000;
+
+    color: #ffffff;
+
+    font-family: 'Cinzel', serif;
+    font-size: 17px;
+    font-weight: 900;
+
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+}
+
+.header-brand h1 {
+    margin: 0;
+
+    font-family: 'Cinzel', serif;
+    font-size: clamp(19px, 2vw, 27px);
+    font-weight: 900;
+
+    color: #ff0000;
+
+    letter-spacing: 3px;
+
+    text-shadow:
+        0 0 10px #ff0000,
+        0 0 20px #aa0000;
+}
+
+.badge-subtitle {
+    display: inline-block;
+
+    margin: 7px 0 0;
+
+    padding: 3px 10px;
+
+    border: 1px solid #880000;
+
+    color: #ff4444;
+    background: rgba(0, 0, 0, 0.8);
+
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    animation: flicker-subtitle 2.3s infinite;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
     gap: 18px;
 }
 
-.value {
-    font-size: 34px;
-    font-weight: bold;
-    margin: 10px 0;
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #ff7777;
+
+    font-size: 16px;
+    letter-spacing: 1px;
 }
 
-.muted {
-    color: #64748b;
+.status-indicator {
+    width: 9px;
+    height: 9px;
+
+    background: #ff0000;
+    border-radius: 50%;
+
+    box-shadow: 0 0 10px #ff0000;
+}
+
+.refresh {
+    padding: 10px 17px;
+
+    background: transparent;
+    color: #ff3333;
+
+    border: 1px solid #ff0000;
+
+    font-family: 'VT323', monospace;
+    font-size: 17px;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.refresh:hover {
+    background: #ff0000;
+    color: #000000;
+
+    box-shadow: 0 0 15px #ff0000;
+}
+
+
+/* =========================================
+   6. SECTION HEADINGS
+========================================= */
+
+.section-heading {
+    margin-bottom: 16px;
+}
+
+.section-heading h2,
+.panel-header h2 {
+    margin: 0;
+
+    color: #ff2222;
+
+    font-family: 'Cinzel', serif;
+    font-size: 19px;
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.section-heading p,
+.panel-header p {
+    margin: 6px 0 0;
+
+    color: #bb5555;
+
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   7. METRIC CARDS
+========================================= */
+
+.metrics-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+.metric-card {
+    min-width: 0;
+
+    padding: 23px;
+
+    background: rgba(5, 0, 2, 0.92);
+
+    border: 1px solid #880000;
+
+    box-shadow:
+        0 0 15px rgba(255, 0, 0, 0.2),
+        inset 0 0 20px rgba(255, 0, 0, 0.04);
+
+    transition: all 0.25s ease;
+}
+
+.metric-card:hover {
+    border-color: #ff0000;
+
+    box-shadow:
+        0 0 22px rgba(255, 0, 0, 0.45),
+        inset 0 0 20px rgba(255, 0, 0, 0.08);
+
+    transform: translateY(-3px);
+}
+
+.metric-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 22px;
+}
+
+.metric-label {
+    color: #cc6666;
+
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.metric-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    border: 1px solid #990000;
+
+    color: #ff4444;
+
+    font-size: 17px;
+
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.25);
+}
+
+.metric-value {
+    overflow-wrap: anywhere;
+
+    color: #ff2222;
+
+    font-size: clamp(30px, 3vw, 43px);
+    font-weight: bold;
+
+    text-shadow:
+        0 0 10px rgba(255, 0, 0, 0.6),
+        0 0 20px rgba(170, 0, 0, 0.3);
+}
+
+.metric-value span {
+    color: #ff7777;
+    font-size: 20px;
+}
+
+.device-value {
+    font-size: clamp(20px, 2vw, 27px);
+}
+
+.time-value {
+    font-size: clamp(22px, 2.2vw, 32px);
+}
+
+.metric-description {
+    margin: 12px 0 0;
+
+    color: #995555;
+
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   8. HISTORY PANEL
+========================================= */
+
+.history-panel {
+    margin-top: 28px;
+    padding: 25px;
+
+    background: rgba(5, 0, 2, 0.94);
+
+    border: 1px solid #aa0000;
+
+    box-shadow:
+        0 0 25px rgba(255, 0, 0, 0.3),
+        inset 0 0 30px rgba(255, 0, 0, 0.035);
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 22px;
+}
+
+.record-count {
+    padding: 6px 13px;
+
+    border: 1px solid #ff0000;
+
+    color: #ff4444;
+    background: rgba(255, 0, 0, 0.08);
+
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   9. SENSOR HISTORY TABLE
+========================================= */
+
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
 }
 
 table {
     width: 100%;
+
     border-collapse: collapse;
+
+    background: rgba(5, 0, 2, 0.92);
+
+    border: 1px solid #ff0000;
+
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.25);
+
+    font-size: 17px;
+    white-space: nowrap;
 }
 
-th, td {
-    padding: 12px;
-    border-bottom: 1px solid #e2e8f0;
-    text-align: left;
+thead {
+    background: #8b0000;
 }
+
+th {
+    padding: 15px;
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    text-align: left;
+
+    border: 1px solid #bb0000;
+}
+
+td {
+    padding: 15px;
+
+    color: #ffcccc;
+
+    text-align: left;
+
+    border: 1px solid #550000;
+}
+
+tbody tr {
+    transition: background 0.2s ease;
+}
+
+tbody tr:hover {
+    background: rgba(255, 0, 0, 0.18);
+}
+
+tbody tr:last-child td {
+    border-bottom: 1px solid #550000;
+}
+
+.record-id {
+    color: #ff6666;
+}
+
+.device-badge {
+    display: inline-block;
+
+    padding: 4px 9px;
+
+    border: 1px solid #990000;
+
+    color: #ff6666;
+
+    background: rgba(255, 0, 0, 0.08);
+
+    font-size: 15px;
+}
+
+.temperature-data {
+    color: #ff7777;
+    font-weight: bold;
+}
+
+.humidity-data {
+    color: #ff9999;
+    font-weight: bold;
+}
+
+
+/* =========================================
+   10. EMPTY STATE
+========================================= */
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 240px;
+    padding: 30px;
+
+    text-align: center;
+
+    border: 1px dashed #770000;
+    background: rgba(20, 0, 3, 0.5);
+}
+
+.empty-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 55px;
+    height: 55px;
+
+    margin-bottom: 14px;
+
+    border: 1px solid #aa0000;
+    border-radius: 50%;
+
+    color: #ff3333;
+
+    font-size: 30px;
+
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.empty-state h3 {
+    margin: 0 0 7px;
+
+    color: #ff3333;
+
+    font-family: 'Cinzel', serif;
+    font-size: 17px;
+    letter-spacing: 2px;
+}
+
+.empty-state p {
+    margin: 0;
+
+    color: #995555;
+    font-size: 16px;
+}
+
+
+/* =========================================
+   11. FOOTER
+========================================= */
+
+.dashboard-footer {
+    display: flex;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 22px 5px 10px;
+
+    color: #884444;
+
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   12. ANIMATION KEYFRAMES
+========================================= */
+
+@keyframes flicker-subtitle {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 12px rgba(255, 0, 0, 0.4);
+    }
+
+    34% {
+        opacity: 0.15;
+        box-shadow: none;
+    }
+
+    36% {
+        opacity: 0.95;
+    }
+
+    37% {
+        opacity: 0.1;
+        box-shadow: none;
+    }
+
+    38% {
+        opacity: 1;
+    }
+
+    82% {
+        opacity: 0.3;
+    }
+
+    83% {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
+   13. RESPONSIVE LAYOUT
+========================================= */
+
+@media (max-width: 1100px) {
+    .metrics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 750px) {
+    body {
+        padding: 15px;
+    }
+
+    .dashboard-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .history-panel {
+        padding: 16px;
+    }
+
+    .panel-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .dashboard-footer {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 450px) {
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header-actions {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .header-brand h1 {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .section-heading h2,
+    .panel-header h2 {
+        font-size: 16px;
+    }
+}
+
+
+/* =========================================
+   14. ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* =========================================
+   VIEWPORT LAYOUT: PREVENT PAGE SCROLLING
+========================================= */
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100vh;  /* Fallback */
+    height: 100dvh; /* Adapts to mobile browser viewport */
+
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* Keep the header visible */
+.dashboard-header {
+    flex-shrink: 0;
+}
+
+/* Keep the overview and metric cards visible */
+.overview {
+    flex-shrink: 0;
+}
+
+/* History occupies the remaining available space */
+.history-panel {
+    display: flex;
+    flex-direction: column;
+
+    flex: 1 1 0;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* Only this section gets a vertical scrollbar */
+.table-wrap {
+    flex: 1 1 0;
+    min-height: 0;
+
+    overflow-y: auto;
+    overflow-x: auto;
+
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+}
+
+/* Keep the footer visible */
+.dashboard-footer {
+    flex-shrink: 0;
+}
+
+/* =========================================
+   MOBILE BROWSER ADJUSTMENTS
+========================================= */
+
+@media (max-width: 750px) {
+    .dashboard {
+        padding:
+            max(10px, env(safe-area-inset-top))
+            max(10px, env(safe-area-inset-right))
+            max(10px, env(safe-area-inset-bottom))
+            max(10px, env(safe-area-inset-left));
+    }
+
+    .dashboard-header {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .metrics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .metric-card {
+        padding: 12px;
+    }
+
+    .history-panel {
+        min-height: 0;
+    }
+
+    .table-wrap {
+        scrollbar-width: thin;
+    }
+}
+
+/* Smaller phones */
+@media (max-width: 450px) {
+    .dashboard-header {
+        gap: 6px;
+    }
+
+    .header-brand {
+        min-width: 0;
+    }
+
+    .header-actions {
+        gap: 6px;
+    }
+
+    .metric-card {
+        padding: 9px;
+    }
+
+    .metric-card .metric-value {
+        font-size: clamp(18px, 5vw, 26px);
+    }
+}
+
+/* =========================================
+   UPSIDE DOWN SCROLLBAR THEME
+========================================= */
 
 .table-wrap {
-    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #8b1e2d #160609;
 }
 
-.refresh {
-    padding: 10px 15px;
-    background: #166534;
-    color: white;
-    border: 0;
-    border-radius: 6px;
-    cursor: pointer;
+/* Chrome, Edge, Safari */
+.table-wrap::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+
+.table-wrap::-webkit-scrollbar-track {
+    background: #160609;
+    border: 1px solid rgba(139, 30, 45, 0.25);
+    border-radius: 10px;
+}
+
+.table-wrap::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        180deg,
+        #d12b3f,
+        #721321
+    );
+
+    border: 2px solid #160609;
+    border-radius: 10px;
+
+    box-shadow: 0 0 8px rgba(209, 43, 63, 0.45);
+}
+
+.table-wrap::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        180deg,
+        #ff4055,
+        #a51d32
+    );
+
+    box-shadow: 0 0 12px rgba(255, 45, 65, 0.75);
+}
+
+.table-wrap::-webkit-scrollbar-corner {
+    background: #160609;
 }
