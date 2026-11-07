@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Validator;
 
 class SensorReadingController extends Controller
 {
+    public function dashboard()
+    {
+        $latest = SensorReading::latest('id')->first();
+
+        $readings = SensorReading::latest('id')->limit(20)->get();
+
+        return view('IoT/iot-dashboard', compact('latest', 'readings'));
+    }
+
     // Handle incoming sensor data
     public function store(Request $request)
     {
