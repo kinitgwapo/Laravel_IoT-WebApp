@@ -17,7 +17,9 @@ typedef enum
 
 void wifi_setup()
 {
-
+  wifi_mode_config();
+  wifi_sta_connect();
+  time_config();
 }
 
 static void wifi_mode_config()
