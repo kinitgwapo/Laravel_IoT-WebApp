@@ -22,11 +22,11 @@ void wifi_setup()
 
 static void wifi_mode_config()
 {
-  status_code_t result = WiFi.mode(WIFI_STA);
+  status_code_t result = WiFi.mode(WIFI_STA) ? SUCCESS : FAIL;
   while(result == FAIL)
   {
     Serial.println("Failed to set WiFi mode, retrying...");
-    result = WiFi.mode(WIFI_STA);
+    result = WiFi.mode(WIFI_STA) ? SUCCESS : FAIL;
     delay(100); 
   }
 
@@ -43,7 +43,7 @@ static void wifi_sta_connect()
     delay(100);
   }
 
-  Serial.println("ESP32's DHCP-assigned IP Address is " + WiFi.localIP());
+  Serial.println("ESP32's DHCP-assigned IP Address is " + String(WiFi.localIP()));
 }
 
 static void time_config()
@@ -51,7 +51,7 @@ static void time_config()
   configTzTime("PHT-8", "pool.ntp.org", "time.google.com");
 
   struct tm timeinfo;
-  status_code_t result = getLocalTime(&timeinfo, 15000);
+  status_code_t result = getLocalTime(&timeinfo, 15000) ? SUCCESS : FAIL;
   if(result == FAIL)
   {
     Serial.println("NTP synchronization failed, restarting the board...");
