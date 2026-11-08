@@ -1,6 +1,9 @@
 #include "wifi_lib.h"
 #include "WiFi.h"
 
+static void wifi_mode_config();
+static void wifi_sta_connect();
+
 #define WIFI_SSID "YOUR_WIFI_SSID_NAME"
 #define WIFI_PASS "YOUR_WIFI_SSID_PASSWORD"
 
