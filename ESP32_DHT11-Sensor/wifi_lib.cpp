@@ -1,8 +1,8 @@
 #include "wifi_lib.h"
 #include "WiFi.h"
 
-#define WIFI_SSID
-#define WIFI_PASS
+#define WIFI_SSID "YOUR_WIFI_SSID_NAME"
+#define WIFI_PASS "YOUR_WIFI_SSID_PASSWORD"
 
 typedef enum
 {
