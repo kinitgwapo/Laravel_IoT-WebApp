@@ -1,4 +1,5 @@
 #include "wifi_lib.h"
+#include "Arduino.h"
 #include "WiFi.h"
 #include "time.h"
 
@@ -17,6 +18,7 @@ typedef enum
 
 void wifi_setup()
 {
+  Serial.begin(115200);
   wifi_mode_config();
   wifi_sta_connect();
   time_config();
