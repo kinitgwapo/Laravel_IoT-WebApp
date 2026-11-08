@@ -1,9 +1,8 @@
-void setup() {
-  // put your setup code here, to run once:
+#include "wifi_lib.h"
 
+void setup() {
+  wifi_setup();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
 }
