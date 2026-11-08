@@ -7,12 +7,12 @@ static void wifi_sta_connect();
 static void time_config();
 
 #define WIFI_SSID "YOUR_WIFI_SSID_NAME"
-#define WIFI_PASS "YOUR_WIFI_SSID_PASSWORD"
+#define WIFI_PASS "YOUR_WIFI_PASSWORD"
 
 typedef enum
 {
-  FAIL = 0,
-  SUCCESS
+  CODE_FAIL = 0,
+  CODE_SUCCESS
 } status_code_t;
 
 void wifi_setup()
@@ -24,11 +24,11 @@ void wifi_setup()
 
 static void wifi_mode_config()
 {
-  status_code_t result = WiFi.mode(WIFI_STA) ? SUCCESS : FAIL;
-  while(result == FAIL)
+  status_code_t result = WiFi.mode(WIFI_STA) ? CODE_SUCCESS : CODE_FAIL;
+  while(result == CODE_FAIL)
   {
     Serial.println("Failed to set WiFi mode, retrying...");
-    result = WiFi.mode(WIFI_STA) ? SUCCESS : FAIL;
+    result = WiFi.mode(WIFI_STA) ? CODE_SUCCESS : CODE_FAIL;
     delay(100); 
   }
 
@@ -53,8 +53,8 @@ static void time_config()
   configTzTime("PHT-8", "pool.ntp.org", "time.google.com");
 
   struct tm timeinfo;
-  status_code_t result = getLocalTime(&timeinfo, 15000) ? SUCCESS : FAIL;
-  if(result == FAIL)
+  status_code_t result = getLocalTime(&timeinfo, 15000) ? CODE_SUCCESS : CODE_FAIL;
+  if(result == CODE_FAIL)
   {
     Serial.println("NTP synchronization failed, restarting the board...");
     delay(1000);
