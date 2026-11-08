@@ -47,7 +47,8 @@ static void wifi_sta_connect()
     delay(100);
   }
 
-  Serial.println("ESP32's DHCP-assigned IP Address is " + String(WiFi.localIP()));
+  Serial.print("\nESP32's DHCP-assigned IP Address is ");
+  Serial.println(WiFi.localIP());
 }
 
 static void time_config()
