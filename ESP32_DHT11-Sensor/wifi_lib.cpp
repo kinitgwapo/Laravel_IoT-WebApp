@@ -107,7 +107,7 @@ static void data_send()
     Serial.println("Failed to initialize HTTP Client");
     return;
   }
-  String authorization = "Bearer " + IOT_DEVICE_TOKEN;
+  String authorization = String("Bearer ") + IOT_DEVICE_TOKEN;
   http.addHeader("Authorization", authorization);
   http.addHeader("Content-Type", "application/json");
   http.addHeader("Accept", "application/json");
