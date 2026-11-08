@@ -1,6 +1,8 @@
 #include "wifi_lib.h"
-
 #include "WiFi.h"
+
+#define WIFI_SSID
+#define WIFI_PASS
 
 typedef enum
 {
@@ -10,7 +12,7 @@ typedef enum
 
 void wifi_setup()
 {
-  
+
 }
 
 static void wifi_mode_config()
@@ -24,4 +26,17 @@ static void wifi_mode_config()
   }
 
   Serial.println("Successfully set WiFi mode as \"Station\"");
+}
+
+static void wifi_sta_connect()
+{
+  WiFi.begin(WIFI_SSID, WIFI_PASS);
+  Serial.print("Connecting");
+  while(WiFi.status() != WL_CONNECTED)
+  {
+    Serial.print(".");
+    delay(100);
+  }
+
+  Serial.println("Successfully connected to " + WiFi.localIP());
 }
